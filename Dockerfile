@@ -1,5 +1,12 @@
 FROM ros:humble-ros-base-jammy AS base
 
+# Switch to much faster mirror for apt processes
+ENV OLD_MIRROR archive.ubuntu.com
+ENV SEC_MIRROR security.ubuntu.com
+ENV NEW_MIRROR mirror.bytemark.co.uk
+
+RUN sed -i "s/$OLD_MIRROR\|$SEC_MIRROR/$NEW_MIRROR/g" /etc/apt/sources.list
+
 # Install key dependencies
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
@@ -10,6 +17,7 @@ RUN apt-get update \
         ros-"$ROS_DISTRO"-camera-info-manager \
         ros-"$ROS_DISTRO"-image-transport \
         ros-"$ROS_DISTRO"-sensor-msgs \
+        ros-"$ROS_DISTRO"-spinnaker-camera-driver \
         ros-"$ROS_DISTRO"-std-msgs \
         ros-"$ROS_DISTRO"-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
@@ -35,9 +43,6 @@ FROM base AS prebuilt
 
 # Import sensor code from repos
 COPY av_camera_launch $ROS_WS/src/av_camera_launch
-COPY flir_camera_msgs $ROS_WS/src/flir_camera_msgs
-COPY spinnaker_camera_driver $ROS_WS/src/spinnaker_camera_driver
-COPY spinnaker_synchronized_camera_driver $ROS_WS/src/spinnaker_synchronized_camera_driver
 
 # Source ROS setup for dependencies and build our code
 RUN . /opt/ros/"$ROS_DISTRO"/setup.sh \
