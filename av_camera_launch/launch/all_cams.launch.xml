@@ -1,0 +1,54 @@
+<launch>
+  <group>
+    <push-ros-namespace namespace="sensor/camera"/>
+    <node_container pkg="rclcpp_components" exec="component_container" name="camera_container" namespace="">
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="fsp_l" namespace="">
+        <param name="camera_name" value="fsp_l"/>
+        <param name="camera_type" value="chameleon"/>
+        <param name="serial_number" value="'17496155'"/>
+        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+      </composable_node>
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="lspf_r" namespace="">
+        <param name="camera_name" value="lspf_r"/>
+        <param name="camera_type" value="chameleon"/>
+        <param name="serial_number" value="'17496123'"/>
+        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+      </composable_node>
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspf_l" namespace="">
+        <param name="camera_name" value="rspf_l"/>
+        <param name="camera_type" value="chameleon"/>
+        <param name="serial_number" value="'17496117'"/>
+        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+      </composable_node>
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="lspr_l" namespace="">
+        <param name="camera_name" value="lspr_l"/>
+        <param name="camera_type" value="chameleon"/>
+        <param name="serial_number" value="'17592240'"/>
+        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+      </composable_node>
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspr_r" namespace="">
+        <param name="camera_name" value="rspr_r"/>
+        <param name="camera_type" value="chameleon"/>
+        <param name="serial_number" value="'17496121'"/>
+        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+      </composable_node>
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rsp_l" namespace="">
+        <param name="camera_name" value="rsp_l"/>
+        <param name="camera_type" value="chameleon"/>
+        <param name="serial_number" value="'17496130'"/>
+        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+      </composable_node>
+    </node_container>
+  </group>
+</launch>

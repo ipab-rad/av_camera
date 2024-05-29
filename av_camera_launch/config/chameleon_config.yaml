@@ -1,0 +1,33 @@
+/**:
+  ros__parameters:
+    debug: True
+    compute_brightness: True
+    dump_node_map: False
+    adjust_timestamp: True
+    gain_auto: "Continuous"
+    gain: 0
+    exposure_auto: "Continuous"
+    exposure_time: 9000
+    offset_x: 0
+    offset_y: 0
+    image_width: 2048
+    image_height: 1536
+    pixel_format: "BayerRG8"  # 'BayerRG8 'RGB8' or 'Mono8'
+    line2_selector: "Line2"
+    line2_v33enable: False
+    line3_selector: "Line3"
+    line3_linemode: "Input"
+    trigger_selector: "FrameStart"
+    trigger_mode: "On"
+    trigger_source: "Line3"
+    trigger_delay: 9
+    trigger_overlap: "ReadOut"
+    chunk_mode_active: True
+    chunk_selector_frame_id: "FrameID"
+    chunk_enable_frame_id: True
+    chunk_selector_exposure_time: "ExposureTime"
+    chunk_enable_exposure_time: True
+    chunk_selector_gain: "Gain"
+    chunk_enable_gain: True
+    chunk_selector_timestamp: "Timestamp"
+    chunk_enable_timestamp: True
