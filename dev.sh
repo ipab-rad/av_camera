@@ -51,9 +51,11 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 # Verify CYCLONE_DIR exists
-if [ ! -f "$CYCLONE_DIR" ]; then
-    echo "$CYCLONE_DIR does not exist! Please provide a valid path to cyclone_dds.xml"
-    exit 1
+if [ -n "$CYCLONE_VOL" ]; then
+    if [ ! -f "$CYCLONE_DIR" ]; then
+        echo "$CYCLONE_DIR does not exist! Please provide a valid path to cyclone_dds.xml"
+        exit 1
+    fi
 fi
 
 # Build docker image up to dev stage
@@ -63,7 +65,8 @@ DOCKER_BUILDKIT=1 docker build \
 
 # Run docker image with local code volumes for development
 docker run -it --rm --net host --privileged \
-    -v /dev/shm:/dev/shm \
+    -v /dev:/dev \
+    -v /tmp:/tmp \
     -v /etc/localtime:/etc/localtime:ro \
     -v ./av_camera_launch:/opt/ros_ws/src/av_camera_launch \
     $CYCLONE_VOL \

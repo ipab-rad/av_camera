@@ -1,0 +1,21 @@
+image_width: 2272
+image_height: 1056
+camera_name: rspf_l
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [1457.43092, 0.0, 1162.31094, 0.0, 1458.87888, 482.21527, 0.0, 0.0, 1.0]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [-0.01995, 0.04874, -0.00218, -0.00024, 0.0]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [1473.4187, 0.0, 1159.77329, 0.0, 0.0, 1475.698, 479.23658, 0.0, 0.0, 0.0,
+    1.0, 0.0]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]

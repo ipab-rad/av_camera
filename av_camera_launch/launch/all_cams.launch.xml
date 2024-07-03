@@ -1,54 +1,109 @@
 <launch>
   <group>
     <push-ros-namespace namespace="sensor/camera"/>
-    <node_container pkg="rclcpp_components" exec="component_container" name="camera_container" namespace="">
+    <node_container pkg="rclcpp_components" exec="component_container_mt" name="camera_container" namespace="">
+      <!-- fsp_l -->
+
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="fsp_l" namespace="">
-        <param name="camera_name" value="fsp_l"/>
-        <param name="camera_type" value="chameleon"/>
-        <param name="serial_number" value="'17496155'"/>
-        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
-        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/fsp_l_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
+
+     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="fsp_l">
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="fsp_l">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- lspf_r -->
 
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="lspf_r" namespace="">
-        <param name="camera_name" value="lspf_r"/>
-        <param name="camera_type" value="chameleon"/>
-        <param name="serial_number" value="'17496123'"/>
-        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
-        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/lspf_r_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspf_l" namespace="">
-        <param name="camera_name" value="rspf_l"/>
-        <param name="camera_type" value="chameleon"/>
-        <param name="serial_number" value="'17496117'"/>
-        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
-        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspf_r">
+        <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="lspf_r">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- lspr_l -->
 
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="lspr_l" namespace="">
-        <param name="camera_name" value="lspr_l"/>
-        <param name="camera_type" value="chameleon"/>
-        <param name="serial_number" value="'17592240'"/>
-        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
-        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/lspr_l_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspr_r" namespace="">
-        <param name="camera_name" value="rspr_r"/>
-        <param name="camera_type" value="chameleon"/>
-        <param name="serial_number" value="'17496121'"/>
-        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
-        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspr_l">
+        <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="lspr_l">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- rsp_l -->
 
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rsp_l" namespace="">
-        <param name="camera_name" value="rsp_l"/>
-        <param name="camera_type" value="chameleon"/>
-        <param name="serial_number" value="'17496130'"/>
-        <param name="parameter_file" value="$(find-pkg-share spinnaker_camera_driver)/config/chameleon.yaml"/>
-        <param from="$(find-pkg-share av_camera_launch)/config/chameleon_config.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/rsp_l_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
+
+     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rsp_l">
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rsp_l">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- rspf_l -->
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspf_l" namespace="">
+        <param from="$(find-pkg-share av_camera_launch)/config/rspf_l_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspf_l">
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rspf_l">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- rspr_r -->
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspr_r" namespace="">
+        <param from="$(find-pkg-share av_camera_launch)/config/rspr_r_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspr_r">
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rspr_r">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
     </node_container>
   </group>
 </launch>
