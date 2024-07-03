@@ -9,7 +9,7 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="fsp_l">
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="fsp_l">
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -26,7 +26,7 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspf_r">
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspf_r">
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -43,7 +43,7 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspr_l">
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspr_l">
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -60,7 +60,7 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rsp_l">
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rsp_l">
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -77,7 +77,7 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspf_l">
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspf_l">
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -94,7 +94,7 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspr_r">
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspr_r">
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -103,7 +103,6 @@
         <remap from="image_rect" to="image_rect_color"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
-
     </node_container>
   </group>
 </launch>

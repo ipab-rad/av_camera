@@ -1,17 +1,15 @@
 <launch>
-
   <arg name="cam_name" default="fsp_l" description="Options: fsp_l, lspf_r, lspr_l, rsp_l, rspf_l, rspr_r"/>
 
   <group>
     <push-ros-namespace namespace="sensor/camera"/>
     <node_container pkg="rclcpp_components" exec="component_container_mt" name="camera_container" namespace="">
-
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="$(var cam_name)" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/$(var cam_name)_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-     <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="$(var cam_name)">
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="$(var cam_name)">
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -20,7 +18,6 @@
         <remap from="image_rect" to="image_rect_color"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
-
     </node_container>
   </group>
 </launch>
