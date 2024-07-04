@@ -3,7 +3,7 @@
 
   <group>
     <push-ros-namespace namespace="sensor/camera"/>
-    <node_container pkg="rclcpp_components" exec="component_container_mt" name="camera_container" namespace="">
+    <node_container pkg="rclcpp_components" exec="component_container_mt" name="$(var cam_name)_container" namespace="">
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="$(var cam_name)" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/$(var cam_name)_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
