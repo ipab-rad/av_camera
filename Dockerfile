@@ -15,7 +15,9 @@ RUN apt-get update \
         ffmpeg \
         ros-"$ROS_DISTRO"-ament-cmake-clang-format \
         ros-"$ROS_DISTRO"-camera-info-manager \
+        ros-"$ROS_DISTRO"-image-proc \
         ros-"$ROS_DISTRO"-image-transport \
+        ros-"$ROS_DISTRO"-image-transport-plugins \
         ros-"$ROS_DISTRO"-sensor-msgs \
         ros-"$ROS_DISTRO"-spinnaker-camera-driver \
         ros-"$ROS_DISTRO"-std-msgs \

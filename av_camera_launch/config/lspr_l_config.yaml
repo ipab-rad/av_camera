@@ -1,0 +1,41 @@
+/**:
+  ros__parameters:
+    camera_name: "lspr_l"
+    camera_type: "chameleon"
+    serial_number: "17592240"
+    frame_id: "camera_lspr_l_optical"
+    parameter_file: "/opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/chameleon.yaml"
+    camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/lspr_l_calib.yaml"
+    debug: False
+    compute_brightness: False
+    dump_node_map: False
+    adjust_timestamp: True
+    gain_auto: "Continuous"
+    gain: 0
+    exposure_auto: "Continuous"
+    exposure_time: 9000
+    reverse_x: True
+    reverse_y: True
+    offset_x: 72
+    offset_y: 448
+    image_width: 2272
+    image_height: 1056
+    pixel_format: "BayerBG8"  # 'BayerRG8' 'BayerBG8' 'RGB8' or 'Mono8'
+    line2_selector: "Line2"
+    line2_v33enable: False
+    line3_selector: "Line3"
+    line3_linemode: "Input"
+    trigger_selector: "FrameStart"
+    trigger_mode: "On"
+    trigger_source: "Line3"
+    trigger_delay: 0
+    trigger_overlap: "ReadOut"
+    chunk_mode_active: True
+    chunk_selector_frame_id: "FrameID"
+    chunk_enable_frame_id: True
+    chunk_selector_exposure_time: "ExposureTime"
+    chunk_enable_exposure_time: True
+    chunk_selector_gain: "Gain"
+    chunk_enable_gain: True
+    chunk_selector_timestamp: "Timestamp"
+    chunk_enable_timestamp: True

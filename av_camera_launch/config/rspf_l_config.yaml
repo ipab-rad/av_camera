@@ -1,17 +1,25 @@
 /**:
   ros__parameters:
-    debug: True
-    compute_brightness: True
+    camera_name: "rspf_l"
+    camera_type: "chameleon"
+    serial_number: "17496117"
+    frame_id: "camera_rspf_l_optical"
+    parameter_file: "/opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/chameleon.yaml"
+    camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/rspf_l_calib.yaml"
+    debug: False
+    compute_brightness: False
     dump_node_map: False
     adjust_timestamp: True
     gain_auto: "Continuous"
     gain: 0
     exposure_auto: "Continuous"
     exposure_time: 9000
-    offset_x: 0
-    offset_y: 0
-    image_width: 2048
-    image_height: 1536
+    reverse_x: False
+    reverse_y: False
+    offset_x: 94
+    offset_y: 542
+    image_width: 2272
+    image_height: 1056
     pixel_format: "BayerRG8"  # 'BayerRG8 'RGB8' or 'Mono8'
     line2_selector: "Line2"
     line2_v33enable: False
@@ -20,7 +28,7 @@
     trigger_selector: "FrameStart"
     trigger_mode: "On"
     trigger_source: "Line3"
-    trigger_delay: 9
+    trigger_delay: 0
     trigger_overlap: "ReadOut"
     chunk_mode_active: True
     chunk_selector_frame_id: "FrameID"
