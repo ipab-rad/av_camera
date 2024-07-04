@@ -10,12 +10,17 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="fsp_l">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="fsp_l">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -27,12 +32,17 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspf_r">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="lspf_r">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -44,12 +54,17 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspr_l">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="lspr_l">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -61,12 +76,17 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rsp_l">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rsp_l">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -78,12 +98,17 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspf_l">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rspf_l">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
@@ -95,12 +120,17 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspr_r">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rspr_r">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
     </node_container>
