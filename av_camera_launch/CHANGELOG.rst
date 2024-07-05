@@ -2,8 +2,8 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2024-07-05)
+------------------
 * Configure cameras to run in `trigger_mode` to support external hardware 
   synchronisation. Flir camera driver will not publish until cameras are 
   triggered.
