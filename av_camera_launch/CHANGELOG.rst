@@ -15,11 +15,10 @@ Forthcoming
   - `av_camera` is used as IMAGE_NAME rather than repository name.
 * Simplify `av_camera_launch` package.
   - Remove dev/test old launch files.
-  - Modify `chameleon_config.yaml` to run cameras in synchronised mode and 
-    explicitly use it when launching cameras.
+  - Modify `chameleon_config.yaml` to run cameras in synchronised mode and
+  explicitly use it when launching cameras.
 * Avoid `dev.sh` overriding `latest` Docker tag for convenience.
 * Synchronise host time with Docker container.
 
-  ---------
   Co-authored-by: Hector Cruz <hcruzgo@ed.ac.uk>
 * Contributors: Alejandro Bordallo, Hector Cruz
