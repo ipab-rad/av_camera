@@ -11,9 +11,7 @@
     dump_node_map: False
     adjust_timestamp: True
     gain_auto: "Continuous"
-    gain: 0
     exposure_auto: "Continuous"
-    exposure_time: 9000
     reverse_x: True
     reverse_y: True
     offset_x: 72
@@ -21,10 +19,6 @@
     image_width: 2272
     image_height: 1056
     pixel_format: "BayerBG8"  # 'BayerRG8' 'BayerBG8' 'RGB8' or 'Mono8'
-    line2_selector: "Line2"
-    line2_v33enable: False
-    line3_selector: "Line3"
-    line3_linemode: "Input"
     trigger_selector: "FrameStart"
     trigger_mode: "On"
     trigger_source: "Line3"

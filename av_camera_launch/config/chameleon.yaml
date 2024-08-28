@@ -8,12 +8,6 @@ parameters:
   #
   # --------- image format control
   #
-  - name: image_width
-    type: int
-    node: ImageFormatControl/Width
-  - name: image_height
-    type: int
-    node: ImageFormatControl/Height
   - name: reverse_x
     type: bool
     node: ImageFormatControl/ReverseX
@@ -26,6 +20,12 @@ parameters:
   - name: offset_y
     type: int
     node: ImageFormatControl/OffsetY
+  - name: image_width
+    type: int
+    node: ImageFormatControl/Width
+  - name: image_height
+    type: int
+    node: ImageFormatControl/Height
   - name: pixel_format
     type: enum
     # Check available values with SpinView. Not all are supported by ROS!
