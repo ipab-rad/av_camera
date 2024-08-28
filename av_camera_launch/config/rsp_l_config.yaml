@@ -14,10 +14,10 @@
     exposure_auto: "Continuous"
     reverse_x: True
     reverse_y: True
-    offset_x: 12
-    offset_y: 682
-    image_width: 2304
-    image_height: 1120
+    offset_x: 0
+    offset_y: 0
+    image_width: 2448
+    image_height: 2048
     pixel_format: "BayerBG8"  # 'BayerRG8' 'BayerBG8' 'RGB8' or 'Mono8'
     trigger_selector: "FrameStart"
     trigger_mode: "On"
