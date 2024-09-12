@@ -13,7 +13,7 @@
     gain_auto: "Continuous"
     # exposure_auto: "Continuous"
     exposure_auto: "Off"
-    exposure_time: "5000"
+    exposure_time: 5000
     reverse_x: False
     reverse_y: False
     offset_x: 24
