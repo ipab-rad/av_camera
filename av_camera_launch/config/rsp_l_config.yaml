@@ -11,7 +11,8 @@
     dump_node_map: False
     adjust_timestamp: True
     gain_auto: "Continuous"
-    exposure_auto: "Continuous"
+    exposure_auto: "Off"
+    exposure_time: 4000
     reverse_x: True
     reverse_y: True
     offset_x: 12
