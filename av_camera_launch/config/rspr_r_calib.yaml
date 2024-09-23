@@ -1,19 +1,19 @@
-image_width: 2272
-image_height: 1056
+image_width: 2400
+image_height: 1200
 camera_name: rspr_r
 camera_matrix:
   rows: 3
   cols: 3
-  data: [1446.84345, 0.0, 1148.69961, 0.0, 1448.53824, 464.33587, 0.0, 0.0, 1.0]
+  data: [1447.00739, 0.0, 1213.12424, 0.0, 1447.20673, 686.80094, 0.0, 0.0, 1.0]
 distortion_model: plumb_bob
 distortion_coefficients:
   rows: 1
   cols: 5
-  data: [-0.0234, 0.04879, -0.00301, 0.00256, 0.0]
+  data: [-0.02134, 0.04395, -0.00182, 0.0, 0.0]
 projection_matrix:
   rows: 3
   cols: 4
-  data: [1459.90759, 0.0, 1154.22505, 0.0, 0.0, 1464.0647, 460.47859, 0.0, 0.0, 0.0,
+  data: [1471.04492, 0.0, 1211.75794, 0.0, 0.0, 1467.35376, 681.85845, 0.0, 0.0, 0.0,
     1.0, 0.0]
 rectification_matrix:
   rows: 3

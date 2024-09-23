@@ -11,13 +11,14 @@
     dump_node_map: False
     adjust_timestamp: True
     gain_auto: "Continuous"
-    exposure_auto: "Continuous"
+    exposure_auto: "Off"
+    exposure_time: 5000
     reverse_x: True
     reverse_y: True
-    offset_x: 12
-    offset_y: 682
-    image_width: 2304
-    image_height: 1120
+    offset_x: 24
+    offset_y: 522
+    image_width: 2400
+    image_height: 1200
     pixel_format: "BayerBG8"  # 'BayerRG8' 'BayerBG8' 'RGB8' or 'Mono8'
     trigger_selector: "FrameStart"
     trigger_mode: "On"
