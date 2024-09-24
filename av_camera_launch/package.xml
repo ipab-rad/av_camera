@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>av_camera_launch</name>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <description>AV camera config and launch</description>
   <maintainer email="alex.bordallo@ed.ac.uk">Alejandro Bordallo</maintainer>
   <maintainer email="hcruzgo@ed.ac.uk">Hector Cruz</maintainer>

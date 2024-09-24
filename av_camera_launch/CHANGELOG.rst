@@ -2,8 +2,8 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.1.0 (2024-09-24)
+------------------
 * Add new ROIs (`#7 <https://github.com/ipab-rad/av_camera/issues/7>`_)
   - 2400 out of 2448 covers nearly the entire horizontal width of image
   - 1200 out of 2048 ignores most of the car bonnet/boot and most of sky
