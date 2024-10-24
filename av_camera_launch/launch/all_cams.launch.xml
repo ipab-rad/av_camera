@@ -2,9 +2,13 @@
   <group>
     <push-ros-namespace namespace="sensor/camera"/>
     <node_container pkg="rclcpp_components" exec="component_container_mt" name="camera_container" namespace="">
+      <param name="cameras">
+          <list>cam0 cam1</list>
+      </param>
+
       <!-- fsp_l -->
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="fsp_l" namespace="">
+      <composable_node pkg="spinnaker_synchronized_camera_driver" plugin="spinnaker_synchronized_camera_driver::SynchronizedCameraDriver" name="fsp_l" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/fsp_l_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
@@ -26,7 +30,7 @@
 
       <!-- lspf_r -->
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="lspf_r" namespace="">
+      <composable_node pkg="spinnaker_synchronized_camera_driver" plugin="spinnaker_synchronized_camera_driver::SynchronizedCameraDriver" name="lspf_r" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/lspf_r_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
@@ -48,7 +52,7 @@
 
       <!-- lspr_l -->
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="lspr_l" namespace="">
+      <composable_node pkg="spinnaker_synchronized_camera_driver" plugin="spinnaker_synchronized_camera_driver::SynchronizedCameraDriver" name="lspr_l" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/lspr_l_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
@@ -70,7 +74,7 @@
 
       <!-- rsp_l -->
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rsp_l" namespace="">
+      <composable_node pkg="spinnaker_synchronized_camera_driver" plugin="spinnaker_synchronized_camera_driver::SynchronizedCameraDriver" name="rsp_l" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/rsp_l_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
@@ -92,7 +96,7 @@
 
       <!-- rspf_l -->
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspf_l" namespace="">
+      <composable_node pkg="spinnaker_synchronized_camera_driver" plugin="spinnaker_synchronized_camera_driver::SynchronizedCameraDriver" name="rspf_l" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/rspf_l_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
@@ -114,7 +118,7 @@
 
       <!-- rspr_r -->
 
-      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspr_r" namespace="">
+      <composable_node pkg="spinnaker_synchronized_camera_driver" plugin="spinnaker_synchronized_camera_driver::SynchronizedCameraDriver" name="rspr_r" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/rspr_r_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
