@@ -2,8 +2,8 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.2.0 (2024-10-30)
+------------------
 * Use 1 ms exposure for all cameras
 * Contributors: Alejandro Bordallo
 
