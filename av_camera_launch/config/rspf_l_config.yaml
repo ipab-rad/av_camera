@@ -23,7 +23,7 @@
         max_gain: 10.0
         min_exposure_time: 1000
         type: "master"
-      exposure_time: 5000
+      exposure_time: 1000
       reverse_x: False
       reverse_y: False
       offset_x: 24
