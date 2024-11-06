@@ -2,6 +2,11 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.0 (2024-10-30)
+------------------
+* Use 1 ms exposure for all cameras
+* Contributors: Alejandro Bordallo
+
 1.1.0 (2024-09-24)
 ------------------
 * Add new ROIs (`#7 <https://github.com/ipab-rad/av_camera/issues/7>`_)

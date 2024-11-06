@@ -13,8 +13,8 @@ distortion_coefficients:
 projection_matrix:
   rows: 3
   cols: 4
-  data: [1487.19666, 0.0, 1217.46926, 0.0, 0.0, 1486.86389, 695.97597, 0.0, 0.0, 0.0,
-    1.0, 0.0]
+  data: [1487.19666, 0.0, 1217.46926, 0.0, 0.0, 1486.86389, 695.97597, 0.0,
+         0.0, 0.0, 1.0, 0.0]
 rectification_matrix:
   rows: 3
   cols: 3
