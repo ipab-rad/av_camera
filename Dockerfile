@@ -46,6 +46,7 @@ FROM base AS prebuilt
 
 # Import sensor code from repos
 COPY av_camera_launch $ROS_WS/src/av_camera_launch
+COPY av_camera_inspector $ROS_WS/src/av_camera_inspector
 
 # Source ROS setup for dependencies and build our code
 RUN . /opt/ros/"$ROS_DISTRO"/setup.sh \

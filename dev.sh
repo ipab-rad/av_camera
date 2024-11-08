@@ -69,5 +69,6 @@ docker run -it --rm --net host --privileged \
     -v /tmp:/tmp \
     -v /etc/localtime:/etc/localtime:ro \
     -v ./av_camera_launch:/opt/ros_ws/src/av_camera_launch \
+    -v ./av_camera_inspector:/opt/ros_ws/src/av_camera_inspector \
     $CYCLONE_VOL \
     av_camera:latest-dev $BASH_CMD
