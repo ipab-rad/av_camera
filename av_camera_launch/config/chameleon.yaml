@@ -32,6 +32,10 @@ parameters:
     # Some formats are e.g. "Mono8", "BayerRG8", "BGR8", "BayerRG16"
     # default is "BayerRG8"
     node: ImageFormatControl/PixelFormat
+  - name: video_mode
+    type: enum
+    # allowed video modes: Mode0, Mode4, Mode5, Mode7
+    node: ImageFormatControl/VideoMode
   #
   # -------- analog control
   #
