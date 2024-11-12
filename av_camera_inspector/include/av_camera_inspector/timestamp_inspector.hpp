@@ -11,10 +11,10 @@
 #include <mutex>
 #include <unordered_map>
 #include <chrono>
-
-
 namespace camera
 {
+
+using ROSTime = builtin_interfaces::msg::Time;
 
 class TimestampInspector : public rclcpp::Node
 {
@@ -27,11 +27,12 @@ private:
 
     rmw_qos_profile_t get_topic_qos_profie(rclcpp::Node *node, const std::string &optic);
 
-    bool received_before(uint8_t status_binary, uint8_t cam_idx)
-    {
-        // Create a mask based on the index (idx=0 -> bit 7, idx=1 -> bit 6, ..., idx=7 -> bit 0)
-        return (status_binary & (1 << (7 - cam_idx))) != 0; // 7-idx to reverse the order (idx=0 -> bit 7)
-    }
+    bool received_before(uint8_t status_binary, uint8_t cam_idx);
+
+    void print_camera_timestamps_stats(const std::vector<std::string> &camera_names,
+                                       const std::vector<ROSTime> &times);
+
+    double get_timestamp_diff(ROSTime &t1, ROSTime &t2);
 
     // Data members
     std::unordered_map<std::string, sensor_msgs::msg::Image::ConstSharedPtr> images_;
@@ -41,16 +42,14 @@ private:
 
     std::string lidar_frame_;
     std::vector<std::string> cam_names_;
-    // std::vector<builtin_interfaces::msg::Time> cameras_timestamps_(6);
-    std::vector<builtin_interfaces::msg::Time> prev_cam_ros_stamps_;
-    // std::vector<builtin_interfaces::msg::Time> curr_cam_stamps_;
+    std::vector<ROSTime> prev_cam_ros_stamps_;
     uint8_t received_status_bin_ = 0;
     std::unordered_map<std::string, uint8_t> cam_idx_map_;
 
     std::vector<std::chrono::time_point<std::chrono::high_resolution_clock>> prev_cam_host_time_;
     std::vector<std::chrono::milliseconds> cams_pub_period_ms_vec_;
 
-    const int ALL_CAM_RECEIVED = 252;
+    int ALL_CAM_RECEIVED = 252;
     // Subscribers
     std::vector<image_transport::CameraSubscriber> image_subscribers_;
 

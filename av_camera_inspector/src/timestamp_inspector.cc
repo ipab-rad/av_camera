@@ -9,7 +9,6 @@
 namespace camera
 {
 
-using builtin_interfaces::msg::Time;
 
 TimestampInspector::TimestampInspector(const rclcpp::NodeOptions &options)
     : Node("cam_timestamp_inspector", options)
@@ -17,6 +16,8 @@ TimestampInspector::TimestampInspector(const rclcpp::NodeOptions &options)
 
     cam_names_ = this->declare_parameter<std::vector<std::string>>(
         "camera_names", {"fsp_l", "lspf_r", "lspr_l", "rsp_l", "rspf_l", "rspr_r"});
+
+    ALL_CAM_RECEIVED = 252; // TODO: Compute this automatically
 
     received_status_bin_ = 0;
 
@@ -33,7 +34,7 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
     for (const auto &camera_name : cam_names)
     {
         cam_idx_map_[camera_name] = cam_idx;
-        prev_cam_ros_stamps_.push_back(Time());
+        prev_cam_ros_stamps_.push_back(ROSTime());
         prev_cam_host_time_.push_back(std::chrono::high_resolution_clock::now());
         cams_pub_period_ms_vec_.push_back(std::chrono::milliseconds{0});
         std::string cam_topic = "/sensor/camera/" + camera_name + "/image_raw";
@@ -62,9 +63,9 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
                     received_status_bin_ |=
                         (1 << (7 - cam_idx_map_[camera_name])); // 7-i for correct bit positioning
 
-                    Time past_stamp = prev_cam_ros_stamps_[cam_idx_map_[camera_name]];
+                    ROSTime past_stamp = prev_cam_ros_stamps_[cam_idx_map_[camera_name]];
 
-                    Time curr_stamp = image_msg->header.stamp;
+                    ROSTime curr_stamp = image_msg->header.stamp;
 
                     if (past_stamp.sec == curr_stamp.sec){
 
@@ -85,7 +86,7 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
                     {
                         // This camera was the last one remining for this period
                         RCLCPP_INFO(this->get_logger(),
-                                    "All cam images were received, last received: %s\n",
+                                    "All cam images were received, last one received: %s\n",
                                     camera_name.c_str());
 
                         // Print stats
@@ -103,7 +104,11 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
                                          std::to_string(cam_pub_period_ms.count()) + " ms " + "(" +
                                          std::to_string(rate_hz) + " Hz)\n";
                         }
-                        RCLCPP_INFO(this->get_logger(), "Camera stats: \n%s", stats_str.c_str());
+
+                        RCLCPP_INFO(this->get_logger(), "Estimaed freq:\n%s", stats_str.c_str());
+
+                        print_camera_timestamps_stats(cam_names_, prev_cam_ros_stamps_);
+                        RCLCPP_INFO(rclcpp::get_logger(""), "--------------------------------------------------");
 
                         received_status_bin_ = 0;
                     }
@@ -120,6 +125,70 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
     }
 }
 
+void TimestampInspector::print_camera_timestamps_stats(const std::vector<std::string> &camera_names, const std::vector<ROSTime> &times)
+{
+    // Check if the input vectors are empty or have mismatched sizes
+    if (camera_names.empty() || times.empty() || camera_names.size() != times.size())
+    {
+        RCLCPP_INFO(this->get_logger(), "No valid camera timestamps to process.");
+        return;
+    }
+
+    // Create a vector of pairs to associate each camera name with its timestamp
+    std::vector<std::pair<std::string, ROSTime>> camera_times;
+    for (size_t i = 0; i < camera_names.size(); ++i)
+    {
+        camera_times.emplace_back(camera_names[i], times[i]);
+    }
+
+    // Sort by timestamps (oldest to newest)
+    std::sort(camera_times.begin(), camera_times.end(), [](const auto &a, const auto &b)
+              { return (a.second.sec < b.second.sec) || (a.second.sec == b.second.sec && a.second.nanosec < b.second.nanosec); });
+
+    // Print sorted timestamps with camera names
+    RCLCPP_INFO(this->get_logger(), "Camera Timestamps (in seconds.nanoseconds):");
+    for (const auto &camera_time : camera_times)
+    {
+        RCLCPP_INFO(this->get_logger(), "%s -> %d.%d",
+                    camera_time.first.c_str(), camera_time.second.sec, camera_time.second.nanosec);
+    }
+
+    // Calculate and print time differences in milliseconds
+    for (size_t i = 1; i < camera_times.size(); ++i)
+    {
+        auto &t1 = camera_times[i - 1].second;
+        auto &t2 = camera_times[i].second;
+
+        double diff_ms = get_timestamp_diff(t1, t2);
+
+        RCLCPP_INFO(this->get_logger(), "Difference between %s and %s: %f ms",
+                    camera_times[i - 1].first.c_str(), camera_times[i].first.c_str(), diff_ms);
+    }
+}
+
+double TimestampInspector::get_timestamp_diff(ROSTime &t1, ROSTime &t2)
+{
+    // Calculate the difference in seconds and nanoseconds
+    int64_t sec_diff = t2.sec - t1.sec;
+    int32_t nsec_diff = t2.nanosec - t1.nanosec;
+
+    // Handle cases where nanoseconds in t1 are greater than in t2
+    if (nsec_diff < 0)
+    {
+        sec_diff -= 1;
+        nsec_diff += 1000000000; // Add a full second in nanoseconds
+    }
+
+    // Convert to milliseconds
+    double diff_ms = sec_diff * 1000.0 + static_cast<double>(nsec_diff) / 1000000.0;
+    return diff_ms;
+}
+
+bool TimestampInspector::received_before(uint8_t status_binary, uint8_t cam_idx)
+{
+    // Create a mask based on the index (idx=0 -> bit 7, idx=1 -> bit 6, ..., idx=7 -> bit 0)
+    return (status_binary & (1 << (7 - cam_idx))) != 0; // 7-idx to reverse the order (idx=0 -> bit 7)
+}
 
 rmw_qos_profile_t TimestampInspector::get_topic_qos_profie(rclcpp::Node *node,
                                                              const std::string &topic)
