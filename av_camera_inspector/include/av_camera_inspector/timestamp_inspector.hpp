@@ -32,7 +32,7 @@ private:
     void print_camera_timestamps_stats(const std::vector<std::string> &camera_names,
                                        const std::vector<ROSTime> &times);
 
-    double get_timestamp_diff(ROSTime &t1, ROSTime &t2);
+    double get_ros_stamp_diff(ROSTime &t1, ROSTime &t2);
 
     // Data members
     std::unordered_map<std::string, sensor_msgs::msg::Image::ConstSharedPtr> images_;
@@ -43,11 +43,12 @@ private:
     std::string lidar_frame_;
     std::vector<std::string> cam_names_;
     std::vector<ROSTime> prev_cam_ros_stamps_;
+    std::vector<ROSTime> curr_cam_ros_stamps_;
     uint8_t received_status_bin_ = 0;
     std::unordered_map<std::string, uint8_t> cam_idx_map_;
 
     std::vector<std::chrono::time_point<std::chrono::high_resolution_clock>> prev_cam_host_time_;
-    std::vector<std::chrono::milliseconds> cams_pub_period_ms_vec_;
+    std::vector<std::chrono::time_point<std::chrono::high_resolution_clock>> curr_cam_host_time_;
 
     int ALL_CAM_RECEIVED = 252;
     // Subscribers

@@ -35,8 +35,9 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
     {
         cam_idx_map_[camera_name] = cam_idx;
         prev_cam_ros_stamps_.push_back(ROSTime());
+        curr_cam_ros_stamps_.push_back(ROSTime());
         prev_cam_host_time_.push_back(std::chrono::high_resolution_clock::now());
-        cams_pub_period_ms_vec_.push_back(std::chrono::milliseconds{0});
+        curr_cam_host_time_.push_back(std::chrono::high_resolution_clock::now());
         std::string cam_topic = "/sensor/camera/" + camera_name + "/image_raw";
 
         image_subscribers_.emplace_back(image_transport::create_camera_subscription(
@@ -63,24 +64,8 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
                     received_status_bin_ |=
                         (1 << (7 - cam_idx_map_[camera_name])); // 7-i for correct bit positioning
 
-                    ROSTime past_stamp = prev_cam_ros_stamps_[cam_idx_map_[camera_name]];
-
-                    ROSTime curr_stamp = image_msg->header.stamp;
-
-                    if (past_stamp.sec == curr_stamp.sec){
-
-                        if (past_stamp.nanosec == curr_stamp.nanosec)
-                        {
-                            RCLCPP_WARN(this->get_logger(),
-                                        "(%s) Current camera ROS timestamp is the same as previous!",
-                                        camera_name.c_str());
-                        }
-                    }
-
-                    auto &prev_host_time = prev_cam_host_time_[cam_idx_map_[camera_name]];
-                    cams_pub_period_ms_vec_[cam_idx_map_[camera_name]] =
-                        std::chrono::duration_cast<std::chrono::milliseconds>(curr_host_time -
-                                                                              prev_host_time);
+                    curr_cam_ros_stamps_[cam_idx_map_[camera_name]] = image_msg->header.stamp;
+                    curr_cam_host_time_[cam_idx_map_[camera_name]] = curr_host_time;
 
                     if (received_status_bin_ == ALL_CAM_RECEIVED)
                     {
@@ -89,32 +74,46 @@ void TimestampInspector::subscribe_to_cameras(std::vector<std::string> &cam_name
                                     "All cam images were received, last one received: %s\n",
                                     camera_name.c_str());
 
-                        // Print stats
+                        // Print stats recieved period | received_period ms | stamp_period | stamp_freq
                         std::string stats_str;
                         for (size_t idx = 0; idx < cam_names_.size(); ++idx)
                         {
-                            auto cam_pub_period_ms = cams_pub_period_ms_vec_[idx];
+                            // Compute received period and freq
+                            auto & prev_host_time = prev_cam_host_time_[cam_idx_map_[camera_name]];
+                            auto & curr_host_time = curr_cam_host_time_[cam_idx_map_[camera_name]];
+                            auto cam_pub_period_ms = std::chrono::duration_cast<std::chrono::milliseconds>(curr_host_time -
+                                                                              prev_host_time);
 
                             double period_sec = cam_pub_period_ms.count() / 1000.0;
 
                             double rate_hz = period_sec > 0 ? 1.0 / period_sec : 0;
 
-                            // Format the output string
+                            // Compute image stamp period and freq
+                            auto &prev_ros_stamp = prev_cam_ros_stamps_[cam_idx_map_[camera_name]];
+                            auto &curr_ros_stamp = curr_cam_ros_stamps_[cam_idx_map_[camera_name]];
+
+                            double stamp_period_ms = get_ros_stamp_diff(prev_ros_stamp, curr_ros_stamp);
+
+                            double stamp_freq_hz = 1000.0 / (stamp_period_ms);
+
+                            // Create stat sentence
                             stats_str += "\t" + cam_names_[idx] + ": " +
                                          std::to_string(cam_pub_period_ms.count()) + " ms " + "(" +
-                                         std::to_string(rate_hz) + " Hz)\n";
+                                         std::to_string(rate_hz) + " Hz) | " +
+                                         std::to_string(stamp_period_ms) + " ms" +
+                                         " (" + std::to_string(stamp_freq_hz) + " Hz)\n";
                         }
 
-                        RCLCPP_INFO(this->get_logger(), "Estimaed freq:\n%s", stats_str.c_str());
+                        RCLCPP_INFO(this->get_logger(), "\n\t Host receiving period | ROS stamp period\n%s", stats_str.c_str());
 
-                        print_camera_timestamps_stats(cam_names_, prev_cam_ros_stamps_);
+                        print_camera_timestamps_stats(cam_names_, curr_cam_ros_stamps_);
                         RCLCPP_INFO(rclcpp::get_logger(""), "--------------------------------------------------");
 
                         received_status_bin_ = 0;
-                    }
 
-                    prev_cam_ros_stamps_[cam_idx_map_[camera_name]] = curr_stamp;
-                    prev_cam_host_time_[cam_idx_map_[camera_name]] = curr_host_time;
+                        prev_cam_ros_stamps_ = curr_cam_ros_stamps_;
+                        prev_cam_host_time_ = curr_cam_host_time_;
+                    }
                     
                 }
         
@@ -159,14 +158,14 @@ void TimestampInspector::print_camera_timestamps_stats(const std::vector<std::st
         auto &t1 = camera_times[i - 1].second;
         auto &t2 = camera_times[i].second;
 
-        double diff_ms = get_timestamp_diff(t1, t2);
+        double diff_ms = get_ros_stamp_diff(t1, t2);
 
         RCLCPP_INFO(this->get_logger(), "Difference between %s and %s: %f ms",
                     camera_times[i - 1].first.c_str(), camera_times[i].first.c_str(), diff_ms);
     }
 }
 
-double TimestampInspector::get_timestamp_diff(ROSTime &t1, ROSTime &t2)
+double TimestampInspector::get_ros_stamp_diff(ROSTime &t1, ROSTime &t2)
 {
     // Calculate the difference in seconds and nanoseconds
     int64_t sec_diff = t2.sec - t1.sec;
