@@ -34,9 +34,10 @@
       video_mode: "Mode0"
       trigger_selector: "FrameStart"
       trigger_mode: "On"
-      trigger_source: "Line3"
+      trigger_source: "Line0"
       trigger_delay: 0
       trigger_overlap: "ReadOut"
+      acquisition_mode: "SingleFrame"
       chunk_mode_active: True
       chunk_selector_frame_id: "FrameID"
       chunk_enable_frame_id: True
