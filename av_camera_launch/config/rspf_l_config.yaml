@@ -8,10 +8,10 @@
       parameter_file: "/opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/chameleon.yaml"
       camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/rspf_l_calib.yaml"
       debug: False
-      compute_brightness: True
+      compute_brightness: False
       dump_node_map: False
       adjust_timestamp: True
-      gain_auto: "Off"
+      gain_auto: "Continuous"
       exposure_auto: "Off"
       exposure_controller_name: "rspf_l.exposure_controller"
       exposure_controller:
