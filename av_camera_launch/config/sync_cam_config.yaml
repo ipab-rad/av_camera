@@ -1,0 +1,16 @@
+/**:
+  ros__parameters:
+    cameras:
+    - "fsp_l"
+    - "lspf_r"
+    - "lspr_l"
+    - "rsp_l"
+    - "rspf_l"
+    - "rspr_r"
+    exposure_controllers:
+    - "fsp_l.exposure_controller"
+    - "lspf_r.exposure_controller"
+    - "lspr_l.exposure_controller"
+    - "rsp_l.exposure_controller"
+    - "rspf_l.exposure_controller"
+    - "rspr_r.exposure_controller"

@@ -20,6 +20,7 @@ RUN apt-get update \
         ros-"$ROS_DISTRO"-image-transport-plugins \
         ros-"$ROS_DISTRO"-sensor-msgs \
         ros-"$ROS_DISTRO"-spinnaker-camera-driver \
+        ros-"$ROS_DISTRO"-spinnaker-synchronized-camera-driver \
         ros-"$ROS_DISTRO"-std-msgs \
         ros-"$ROS_DISTRO"-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
