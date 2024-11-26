@@ -2,8 +2,8 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.1 (2024-11-26)
+------------------
 * Temp Fix: Use compute brightness fix from source
   - Clone ROS2 flir driver repo with brightness computation fix upstream
   - Enable compute brightness, disable gain auto and set 100 brightness
