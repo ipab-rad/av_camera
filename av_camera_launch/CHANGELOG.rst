@@ -2,8 +2,8 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.0 (2024-11-26)
+------------------
 * Implement cameras launch file with synchronisation (`#13 <https://github.com/ipab-rad/av_camera/issues/13>`_)
   - Use ROS2 spinnaker synchronized camera driver instead of default
   - Modify camera config parameter yaml files to fit new structure
