@@ -2,6 +2,19 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Implement cameras launch file with synchronisation (`#13 <https://github.com/ipab-rad/av_camera/issues/13>`_)
+  - Use ROS2 spinnaker synchronized camera driver instead of default
+  - Modify camera config parameter yaml files to fit new structure
+  - Add brightness controller parameters as required
+  - Update `all_cams.launch.xml` to run all cameras in single node
+  - Set exposure min/max on Brighntess Controller to 1ms (constant)
+  - NOTE: Temporarily disable Brightness Controller (Use continuous gain) until https://github.com/ros-drivers/flir_camera_driver/issues/216 is released into the wild
+  ---------
+  Co-authored-by: Hector Cruz <hcruzgo@ed.ac.uk>
+* Contributors: Alejandro Bordallo
+
 1.2.0 (2024-10-30)
 ------------------
 * Use 1 ms exposure for all cameras
