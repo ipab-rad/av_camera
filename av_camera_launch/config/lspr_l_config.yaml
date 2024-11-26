@@ -8,14 +8,14 @@
       parameter_file: "/opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/chameleon.yaml"
       camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/lspr_l_calib.yaml"
       debug: False
-      compute_brightness: False
+      compute_brightness: True
       dump_node_map: False
       adjust_timestamp: True
-      gain_auto: "Continuous"
+      gain_auto: "Off"
       exposure_auto: "Off"
       exposure_controller_name: "lspr_l.exposure_controller"
       exposure_controller:
-        brightness_target: 120
+        brightness_target: 100
         brightness_tolerance: 20
         gain_priority: True
         max_exposure_time: 1000

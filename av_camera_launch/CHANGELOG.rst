@@ -2,6 +2,13 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Temp Fix: Use compute brightness fix from source
+  - Clone ROS2 flir driver repo with brightness computation fix upstream
+  - Enable compute brightness, disable gain auto and set 100 brightness
+* Contributors: Alejandro Bordallo
+
 2.0.0 (2024-11-26)
 ------------------
 * Implement cameras launch file with synchronisation (`#13 <https://github.com/ipab-rad/av_camera/issues/13>`_)
