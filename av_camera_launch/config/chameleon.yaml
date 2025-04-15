@@ -49,6 +49,9 @@ parameters:
   #
   # -------- digital IO control
   #
+  - name: line_debounce_time
+    type: float
+    node: DigitalIOControl/LineDebounceTime
   - name: line0_selector # NOT TESTED: probably yellow wire: opto-isolated input
     type: enum
     node: DigitalIOControl/LineSelector

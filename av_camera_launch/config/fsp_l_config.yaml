@@ -32,6 +32,7 @@
       image_height: 1200
       pixel_format: "BayerRG8"  # 'BayerRG8 'RGB8' or 'Mono8'
       video_mode: "Mode0"
+      line_debounce_time: 1.0
       trigger_selector: "FrameStart"
       trigger_mode: "On"
       trigger_source: "Line0"
