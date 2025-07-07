@@ -49,28 +49,15 @@ parameters:
   #
   # -------- digital IO control
   #
-  - name: line_debounce_time
-    type: float
-    node: DigitalIOControl/LineDebounceTime
   - name: line0_selector # NOT TESTED: probably yellow wire: opto-isolated input
     type: enum
     node: DigitalIOControl/LineSelector
-  - name: line1_selector # NOT TESTED: probably orange wire: opto-isolated output
+  - name: line0_linemode # NOT TESTED
     type: enum
-    node: DigitalIOControl/LineSelector
-  - name: line2_selector # NOT TESTED: probably purple wire: non-isolated input/output
-    type: enum
-    node: DigitalIOControl/LineSelector
-  - name: line2_linemode # NOT TESTED
-    type: bool
     node: DigitalIOControl/LineMode
-  - name: line3_selector # NOT TESTED probably green wire: non-isolated input/output
-    type: enum
-    node: DigitalIOControl/LineSelector
-  - name: line3_linemode # NOT TESTED
-    type: enum
-    # valid values: "Input", "Output"
-    node: DigitalIOControl/LineMode
+  - name: line_debounce_time
+    type: int
+    node: DigitalIOControl/LineDebouncerTimeRaw
   #
   # -------- acquisition control
   #
@@ -103,7 +90,14 @@ parameters:
     type: enum
     # valid values are "Software", "Line<0,2,3>"
     node: AcquisitionControl/TriggerSource
-  - name: trigger_delay  # NOT TESTED
+  - name: trigger_activation
+    type: enum
+    # valid values are "Falling Edge", "Rising Edge"
+    node: AcquisitionControl/TriggerActivation
+  - name: trigger_delay_enabled
+    type: bool
+    node: AcquisitionControl/TriggerDelayEnabled
+  - name: trigger_delay
     type: float
     node: AcquisitionControl/TriggerDelay
   - name: trigger_overlap  # NOT TESTED

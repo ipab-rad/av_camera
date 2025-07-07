@@ -7,7 +7,7 @@
       frame_id: "camera_fsp_l_optical"
       parameter_file: "/opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/chameleon.yaml"
       camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/fsp_l_calib.yaml"
-      debug: False
+      debug: True
       compute_brightness: True
       dump_node_map: False
       adjust_timestamp: True
@@ -32,13 +32,17 @@
       image_height: 1200
       pixel_format: "BayerRG8"  # 'BayerRG8 'RGB8' or 'Mono8'
       video_mode: "Mode0"
-      line_debounce_time: 1.0
+      line0_selector: "Line0"
+      line0_linemode: "Input"
+      line_debounce_time: 0
       trigger_selector: "FrameStart"
       trigger_mode: "On"
       trigger_source: "Line0"
-      trigger_delay: 0
+      trigger_activation: "RisingEdge"
+      trigger_delay_enabled: True
+      trigger_delay: 1000 # us
       trigger_overlap: "ReadOut"
-      acquisition_mode: "SingleFrame"
+      acquisition_mode: "Continuous"
       chunk_mode_active: True
       chunk_selector_frame_id: "FrameID"
       chunk_enable_frame_id: True

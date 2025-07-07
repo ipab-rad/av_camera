@@ -41,7 +41,7 @@ ENV CYCLONEDDS_URI=file://${ROS_WS}/cyclone_dds.xml
 ENV RCUTILS_COLORIZED_OUTPUT=1
 
 # TEMP FIX: Clone ROS2 flir driver repo with brightness comp fixes
-RUN git clone https://github.com/ros-drivers/flir_camera_driver.git ./src/flir_camera_driver
+#RUN git clone https://github.com/ros-drivers/flir_camera_driver.git ./src/flir_camera_driver
 
 # -----------------------------------------------------------------------
 

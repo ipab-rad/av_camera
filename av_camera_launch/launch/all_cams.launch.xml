@@ -31,7 +31,7 @@
       </composable_node>
 
       <!-- lspf_r -->
-      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspf_r">
+<!--      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspf_r">
         <remap from="image_mono" to="image"/>
         <remap from="image_mono/compressed" to="image/compressed"/>
         <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
@@ -46,7 +46,6 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-      <!-- lspr_l -->
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="lspr_l">
         <remap from="image_mono" to="image"/>
         <remap from="image_mono/compressed" to="image/compressed"/>
@@ -62,7 +61,6 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-      <!-- rsp_l -->
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rsp_l">
         <remap from="image_mono" to="image"/>
         <remap from="image_mono/compressed" to="image/compressed"/>
@@ -78,7 +76,6 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-      <!-- rspf_l -->
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspf_l">
         <remap from="image_mono" to="image"/>
         <remap from="image_mono/compressed" to="image/compressed"/>
@@ -94,7 +91,6 @@
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
 
-      <!-- rspr_r -->
       <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rspr_r">
         <remap from="image_mono" to="image"/>
         <remap from="image_mono/compressed" to="image/compressed"/>
@@ -109,6 +105,8 @@
         <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
+	-->
+
     </node_container>
   </group>
 </launch>
