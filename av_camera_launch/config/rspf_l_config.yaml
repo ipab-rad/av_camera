@@ -34,6 +34,8 @@
     trigger_selector: "FrameStart"
     trigger_mode: "On"
     trigger_source: "Line0"
+    trigger_activation: "RisingEdge"
+    trigger_delay_enabled: True
     trigger_delay: 0
     trigger_overlap: "ReadOut"
     acquisition_mode: "SingleFrame"
