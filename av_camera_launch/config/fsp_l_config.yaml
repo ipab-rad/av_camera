@@ -10,7 +10,7 @@
     compute_brightness: True
     dump_node_map: False
     adjust_timestamp: True
-    gain_auto: "Off"
+    gain_auto: "Continuous"
     exposure_auto: "Off"
     exposure_controller_name: "fsp_l.exposure_controller"
     exposure_controller:
