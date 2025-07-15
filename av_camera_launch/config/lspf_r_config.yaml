@@ -36,7 +36,7 @@
     trigger_source: "Line0"
     trigger_activation: "RisingEdge"
     trigger_delay_enabled: True
-    trigger_delay: 0
+    trigger_delay: 81000 # us = 81 ms
     trigger_overlap: "ReadOut"
     acquisition_mode: "SingleFrame"
     chunk_mode_active: True
