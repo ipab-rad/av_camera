@@ -113,8 +113,7 @@
       </composable_node>
 
       <!-- rspr_r -->
-
-      <!-- <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspr_r" namespace="">
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspr_r" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/rspr_r_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
@@ -132,7 +131,7 @@
         <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
         <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
-      </composable_node> -->
+      </composable_node>
     </node_container>
   </group>
 </launch>
