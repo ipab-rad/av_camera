@@ -113,6 +113,7 @@
       </composable_node>
 
       <!-- rspr_r -->
+
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rspr_r" namespace="">
         <param from="$(find-pkg-share av_camera_launch)/config/rspr_r_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
@@ -126,6 +127,51 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rspr_r">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- fsp_r -->
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="fsp_r" namespace="">
+        <param from="$(find-pkg-share av_camera_launch)/config/fsp_r_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="fsp_r">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="fsp_r">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+
+      <!-- rsp_r -->
+
+      <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="rsp_r" namespace="">
+        <param from="$(find-pkg-share av_camera_launch)/config/rsp_r_config.yaml"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rsp_r">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rsp_r">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
         <remap from="image_rect/compressed" to="image_rect_color/compressed"/>

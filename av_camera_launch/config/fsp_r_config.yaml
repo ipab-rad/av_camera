@@ -1,18 +1,18 @@
 /**:
   ros__parameters:
-    camera_name: "fsp_l"
+    camera_name: "fsp_r"
     camera_type: "chameleon"
     serial_number: "17496156"
-    frame_id: "camera_fsp_l_optical"
+    frame_id: "camera_fsp_r_optical"
     parameter_file: "/opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/chameleon.yaml"
-    camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/fsp_l_calib.yaml"
+    camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/fsp_r_calib.yaml"
     debug: False
     compute_brightness: True
     dump_node_map: False
     adjust_timestamp: True
     gain_auto: "Continuous"
     exposure_auto: "Off"
-    exposure_controller_name: "fsp_l.exposure_controller"
+    exposure_controller_name: "fsp_r.exposure_controller"
     exposure_controller:
       brightness_target: 100
       brightness_tolerance: 20
@@ -26,7 +26,7 @@
     reverse_x: False
     reverse_y: False
     offset_x: 24
-    offset_y: 326
+    offset_y: 350
     image_width: 2400
     image_height: 1200
     pixel_format: "BayerRG8"  # 'BayerRG8 'RGB8' or 'Mono8'
