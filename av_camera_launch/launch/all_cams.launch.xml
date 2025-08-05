@@ -2,7 +2,6 @@
   <group>
     <push-ros-namespace namespace="sensor/camera"/>
     <node_container pkg="rclcpp_components" exec="component_container_mt" name="image_container" namespace="">
-
       <!-- fsp_l -->
 
       <composable_node pkg="spinnaker_camera_driver" plugin="spinnaker_camera_driver::CameraDriver" name="fsp_l" namespace="">
@@ -178,7 +177,6 @@
         <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
       </composable_node>
-
     </node_container>
   </group>
 </launch>

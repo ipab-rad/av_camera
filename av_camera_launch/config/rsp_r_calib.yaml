@@ -14,7 +14,7 @@ projection_matrix:
   rows: 3
   cols: 4
   data: [1458.60059, 0.0, 1211.93647, 0.0, 0.0, 1457.979, 677.39751, 0.0, 0.0, 0.0,
-    1.0, 0.0]
+         1.0, 0.0]
 rectification_matrix:
   rows: 3
   cols: 3
