@@ -6,9 +6,11 @@
       <composable_node pkg="spinnaker_synchronized_camera_driver" plugin="spinnaker_synchronized_camera_driver::SynchronizedCameraDriver" name="camera" namespace="/sensor">
         <param from="$(find-pkg-share av_camera_launch)/config/sync_cam_config.yaml"/>
         <param from="$(find-pkg-share av_camera_launch)/config/fsp_l_config.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/fsp_r_config.yaml"/>
         <param from="$(find-pkg-share av_camera_launch)/config/lspf_r_config.yaml"/>
         <param from="$(find-pkg-share av_camera_launch)/config/lspr_l_config.yaml"/>
         <param from="$(find-pkg-share av_camera_launch)/config/rsp_l_config.yaml"/>
+        <param from="$(find-pkg-share av_camera_launch)/config/rsp_r_config.yaml"/>
         <param from="$(find-pkg-share av_camera_launch)/config/rspf_l_config.yaml"/>
         <param from="$(find-pkg-share av_camera_launch)/config/rspr_r_config.yaml"/>
         <extra_arg name="use_intra_process_comms" value="true"/>
@@ -23,6 +25,22 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="fsp_l">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- fsp_r -->
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="fsp_r">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="fsp_r">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
         <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
@@ -71,6 +89,22 @@
       </composable_node>
 
       <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rsp_l">
+        <remap from="image" to="image_color"/>
+        <remap from="image_rect" to="image_rect_color"/>
+        <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
+        <remap from="image_rect/compressedDepth" to="image_rect_color/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <!-- rsp_r -->
+      <composable_node pkg="image_proc" plugin="image_proc::DebayerNode" name="debayer_node" namespace="rsp_r">
+        <remap from="image_mono" to="image"/>
+        <remap from="image_mono/compressed" to="image/compressed"/>
+        <remap from="image_mono/compressedDepth" to="image/compressedDepth"/>
+        <extra_arg name="use_intra_process_comms" value="true"/>
+      </composable_node>
+
+      <composable_node pkg="image_proc" plugin="image_proc::RectifyNode" name="rectify_node" namespace="rsp_r">
         <remap from="image" to="image_color"/>
         <remap from="image_rect" to="image_rect_color"/>
         <remap from="image_rect/compressed" to="image_rect_color/compressed"/>
