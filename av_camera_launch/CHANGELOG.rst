@@ -2,8 +2,8 @@
 Changelog for package av_camera_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.0.0 (2025-08-05)
+------------------
 * Migrate from synchronised to non-synchronised FLIR cam driver (`#27 <https://github.com/ipab-rad/av_camera/issues/27>`_)
   Synchronised driver works well when all cameras have to acquire images synchronously (i.e. at the exact same timestamp).
   However, we have chosen to synchronised our cameras with our top rotating lidar instead, meaning we need the non-synchronised driver.
