@@ -1,0 +1,21 @@
+image_width: 2400
+image_height: 1200
+camera_name: rsp_r
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [1441.68056, 0.0, 1218.50457, 0.0, 1440.83383, 681.93155, 0.0, 0.0, 1.0]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [-0.02749, 0.04393, -0.00166, -0.00164, 0.0]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [1458.60059, 0.0, 1211.93647, 0.0, 0.0, 1457.979, 677.39751, 0.0, 0.0, 0.0,
+         1.0, 0.0]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]

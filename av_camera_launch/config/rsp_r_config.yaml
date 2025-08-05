@@ -1,18 +1,18 @@
 /**:
   ros__parameters:
-    camera_name: "lspf_r"
+    camera_name: "rsp_r"
     camera_type: "chameleon"
-    serial_number: "17496123"
-    frame_id: "camera_lspf_r_optical"
+    serial_number: "17496129"
+    frame_id: "camera_rsp_r_optical"
     parameter_file: "/opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/chameleon.yaml"
-    camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/lspf_r_calib.yaml"
+    camerainfo_url: "file:///opt/ros_ws/install/av_camera_launch/share/av_camera_launch/config/rsp_r_calib.yaml"
     debug: False
     compute_brightness: True
     dump_node_map: False
     adjust_timestamp: True
     gain_auto: "Continuous"
     exposure_auto: "Off"
-    exposure_controller_name: "lspf_r.exposure_controller"
+    exposure_controller_name: "rsp_r.exposure_controller"
     exposure_controller:
       brightness_target: 100
       brightness_tolerance: 20
@@ -23,20 +23,20 @@
       min_exposure_time: 1000
       type: "master"
     exposure_time: 1000
-    reverse_x: True
-    reverse_y: True
+    reverse_x: False
+    reverse_y: False
     offset_x: 24
-    offset_y: 522
+    offset_y: 370
     image_width: 2400
     image_height: 1200
-    pixel_format: "BayerBG8"  # 'BayerRG8' 'BayerBG8' 'RGB8' or 'Mono8'
+    pixel_format: "BayerRG8"  # 'BayerRG8' 'BayerBG8' 'RGB8' or 'Mono8'
     video_mode: "Mode0"
     trigger_selector: "FrameStart"
     trigger_mode: "On"
     trigger_source: "Line0"
     trigger_activation: "RisingEdge"
     trigger_delay_enabled: True
-    trigger_delay: 81000 # us = 81 ms
+    trigger_delay: 50000 # us = 50 ms
     trigger_overlap: "ReadOut"
     acquisition_mode: "SingleFrame"
     chunk_mode_active: True

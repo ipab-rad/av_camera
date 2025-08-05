@@ -100,7 +100,14 @@ parameters:
     type: enum
     # valid values are "Software", "Line<0,2,3>"
     node: AcquisitionControl/TriggerSource
-  - name: trigger_delay  # NOT TESTED
+  - name: trigger_activation
+    type: enum
+    # valid values are "Falling Edge", "Rising Edge"
+    node: AcquisitionControl/TriggerActivation
+  - name: trigger_delay_enabled
+    type: bool
+    node: AcquisitionControl/TriggerDelayEnabled
+  - name: trigger_delay
     type: float
     node: AcquisitionControl/TriggerDelay
   - name: trigger_overlap  # NOT TESTED
